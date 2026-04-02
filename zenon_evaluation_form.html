@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS Evaluation Form — Zenon Network</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #8b7d6b;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 700px;
+    min-height: 960px;
+    background: #f5f0e0;
+    padding: 48px 56px 48px 56px;
+    position: relative;
+    box-shadow:
+      4px 4px 20px rgba(0,0,0,0.35),
+      inset 0 0 60px rgba(139,125,107,0.10);
+    /* Aged paper texture */
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(180,160,120,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(160,140,100,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(170,150,110,0.08) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(200,185,155,0.15) 0%, transparent 3%, transparent 97%, rgba(180,160,130,0.12) 100%);
+    background-color: #f5f0e0;
+  }
+
+  /* Coffee stain */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    right: 40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(140,100,50,0.10);
+    background: radial-gradient(ellipse, rgba(160,120,60,0.04) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Corner note */
+  .corner-note {
+    position: absolute;
+    top: 16px;
+    right: 50px;
+    font-family: 'Special Elite', monospace;
+    color: #2c5aa0;
+    font-size: 12px;
+    transform: rotate(-2deg);
+    opacity: 0.7;
+  }
+
+  .title {
+    text-align: center;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2px;
+    min-height: 22px;
+  }
+
+  .label {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 12px;
+    color: #1a1a1a;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .value {
+    font-family: 'Special Elite', monospace;
+    font-size: 14px;
+    color: #2c5aa0;
+    margin-left: 6px;
+    border-bottom: 1px solid #999;
+    flex: 1;
+    padding-bottom: 1px;
+    min-height: 18px;
+  }
+
+  .value-right {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    color: #2c5aa0;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  .row-split {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .row-split .left { flex: 1; display: flex; align-items: baseline; }
+  .row-split .right { flex: 0.6; display: flex; align-items: baseline; margin-left: 10px; }
+
+  .section-label {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    color: #1a1a1a;
+    background: #e8e0cc;
+    padding: 2px 6px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .section-value {
+    font-family: 'Special Elite', monospace;
+    font-size: 14px;
+    color: #2c5aa0;
+    padding: 4px 12px 6px;
+    line-height: 1.6;
+  }
+
+  .table-section {
+    margin: 4px 0;
+  }
+
+  .table-header {
+    display: flex;
+    padding: 0 8px;
+    margin-bottom: 2px;
+  }
+
+  .table-header span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  .th-label { flex: 1; }
+  .th-col { width: 90px; text-align: right; }
+
+  .table-row {
+    display: flex;
+    padding: 0 8px;
+    align-items: baseline;
+    min-height: 18px;
+  }
+
+  .table-row .tr-label {
+    flex: 1;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #1a1a1a;
+  }
+
+  .table-row .tr-val {
+    width: 90px;
+    text-align: right;
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    color: #2c5aa0;
+    border-bottom: 1px solid #bbb;
+  }
+
+  .indent { padding-left: 16px; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #aaa;
+    margin: 3px 8px;
+  }
+
+  .comments-text {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    color: #2c5aa0;
+    padding: 4px 8px;
+    line-height: 1.75;
+  }
+
+  .underline-block {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    color: #2c5aa0;
+    padding: 4px 8px;
+    line-height: 1.75;
+    text-decoration: underline;
+    text-decoration-color: #2c5aa0;
+    text-underline-offset: 3px;
+  }
+
+  .bottom-row {
+    display: flex;
+    margin-top: 14px;
+    border-top: 1px solid #999;
+    padding-top: 6px;
+  }
+
+  .bottom-col {
+    flex: 1;
+  }
+
+  .bottom-col .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bottom-col .value {
+    border-bottom: none;
+    font-size: 14px;
+  }
+
+  .management-names {
+    font-family: 'Special Elite', monospace;
+    font-size: 14px;
+    color: #2c5aa0;
+    padding: 2px 12px;
+    line-height: 1.7;
+  }
+
+  .handwritten-note {
+    font-family: 'Special Elite', monospace;
+    font-size: 12px;
+    color: #2c5aa0;
+    opacity: 0.65;
+    transform: rotate(-1.5deg);
+    margin-top: 4px;
+    padding-left: 8px;
+  }
+
+  .pct {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    color: #2c5aa0;
+    text-align: center;
+    padding: 2px 0;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="corner-note">cc: File<br>4/2/26</div>
+
+  <div class="title">CMS EVALUATION FORM</div>
+
+  <!-- Row 1: Company / Date -->
+  <div class="row-split">
+    <div class="left">
+      <span class="label">Company</span>
+      <span class="value">Zenon Network (NoM)</span>
+    </div>
+    <div class="right">
+      <span class="label">Date Rec'd</span>
+      <span class="value">4/2/26</span>
+    </div>
+  </div>
+
+  <!-- Row 2: Address / Telephone -->
+  <div class="row-split">
+    <div class="left">
+      <span class="label">Address</span>
+      <span class="value">Decentralized — No Fixed HQ</span>
+    </div>
+    <div class="right">
+      <span class="label">Telephone</span>
+      <span class="value">N/A (DAO)</span>
+    </div>
+  </div>
+
+  <!-- Row 3: Introduced By -->
+  <div class="row">
+    <span class="label">Introduced By</span>
+    <span class="value">Direct: Anonymous Founders — Community Research</span>
+    <span class="label" style="margin-left:8px;">Telephone</span>
+    <span class="value" style="flex:0.35;"></span>
+  </div>
+
+  <!-- BUSINESS -->
+  <div class="section-label">BUSINESS:</div>
+  <div class="section-value">
+    Layer-1 Network of Momentum — Feeless Dual-Ledger DLT<br>
+    Bitcoin Interoperability / zApps / Decentralized Infrastructure
+  </div>
+
+  <!-- PROPOSED FINANCING -->
+  <div class="section-label">PROPOSED FINANCING:</div>
+  <div class="section-value">
+    N/A — Protocol-Level Treasury (Accelerator-Z)<br>
+    <span style="font-size:12px; opacity:0.7;">Community-funded via on-chain embedded contract. No VC raise.</span>
+  </div>
+
+  <!-- MARKET -->
+  <div class="section-label">MARKET:</div>
+  <div class="section-value">
+    > $2.5T (Global Crypto Market Cap)
+  </div>
+
+  <!-- OPERATING STATISTICS -->
+  <div class="section-label">NETWORK STATISTICS: (Date)</div>
+  <div class="table-section">
+    <div class="table-header">
+      <span class="th-label"></span>
+      <span class="th-col">Current</span>
+      <span class="th-col">Max</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">ZNN Circulating Supply</span>
+      <span class="tr-val">~10.2M</span>
+      <span class="tr-val">90M</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">QSR Circulating Supply</span>
+      <span class="tr-val">~29.4M</span>
+      <span class="tr-val">~79M</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">Daily ZNN Emission</span>
+      <span class="tr-val">4,320</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">Daily QSR Emission</span>
+      <span class="tr-val">5,000</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">Active Pillars (Validators)</span>
+      <span class="tr-val">~90+</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">Sentinels (Full Nodes)</span>
+      <span class="tr-val">~60+</span>
+      <span class="tr-val">—</span>
+    </div>
+    <hr class="divider">
+    <div class="table-row indent">
+      <span class="tr-label">Market Cap (CoinGecko)</span>
+      <span class="tr-val">~$4.7M</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">FDV (90M tokens)</span>
+      <span class="tr-val">~$4.7M</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">ATH Price (Nov 2021)</span>
+      <span class="tr-val" style="color:#8b0000;">$75.29</span>
+      <span class="tr-val">—</span>
+    </div>
+    <div class="table-row indent">
+      <span class="tr-label">Current Price</span>
+      <span class="tr-val">~$0.35</span>
+      <span class="tr-val">—</span>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT -->
+  <div class="section-label">MANAGEMENT:</div>
+  <div class="management-names">
+    Anonymous Core Team — "Deliver first, talk later"<br>
+    Community-Governed DAO (Pillar Voting)<br>
+    Accelerator-Z Treasury — On-Chain Funding
+  </div>
+  <div class="pct">100% Community-Driven</div>
+
+  <!-- COMMENTS -->
+  <div class="section-label">COMMENTS:</div>
+  <div class="comments-text">
+    Novel L1 in an emerging category... ~$5M mcap buys entire network — very asymmetric deal.
+    Management structure mirrors early Bitcoin: anonymous founders, no VC backing, fair launch ethos.
+    Dual-coin economy (ZNN + QSR) creates unique tokenomic dynamics — QSR is deflationary via Pillar burns.
+    Meta-DAG + block-lattice architecture; feeless transactions via Plasma mechanism.
+    Bitcoin interoperability roadmap (Portal spec v2.0, FROST threshold signing, eBTC).
+  </div>
+
+  <div class="comments-text" style="margin-top: 4px;">
+    Proposed allocation: Direct market purchase. Invitees: N/A — open market. 
+    Uniswap V2 (ETH pair) is primary DEX venue; thin liquidity.
+  </div>
+
+  <div class="underline-block" style="margin-top:6px;">
+    Will be tough to accumulate this position: extremely small float, thin liquidity,
+    no CEX listings of note. Community is tight — holders do not sell easily.
+    Pillar collateral (15K ZNN + 150K QSR burn) creates permanent supply sink.
+    Reminiscent of early BTC accumulation dynamics. Decide by end of Q2.
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-row">
+    <div class="bottom-col">
+      <span class="label">Recommendation</span>
+      <span class="value" style="border-bottom: 1px solid #999; display:block; min-height:18px;"></span>
+    </div>
+    <div class="bottom-col" style="text-align:center;">
+      <span class="label">Action Taken</span>
+      <span class="value" style="border-bottom: 1px solid #999; display:block; min-height:18px;"></span>
+    </div>
+    <div class="bottom-col" style="text-align:right;">
+      <span class="label">Conclusion</span>
+      <span class="value" style="border-bottom: none; display:block;">H. Priority</span>
+    </div>
+  </div>
+
+  <div class="handwritten-note" style="margin-top: 12px;">
+    * "The Network of Momentum is an evolutionary step in DLT" — zenon.network
+  </div>
+
+</div>
+</body>
+</html>
