@@ -1,0 +1,42 @@
+# Zenon Network — CMS Evaluation Form
+
+> A vintage 1970s-style "CMS Evaluation Form" for the Zenon Network of Momentum (NoM), modeled after the famous 1977 Apple Computer evaluation document.
+
+## About This Site
+
+This is a single-page web application that presents Zenon Network (NoM) as a retro investment evaluation memo. It recreates the look and feel of a photocopied 1970s-era venture capital evaluation form, complete with aged paper textures, typewriter fonts, handwritten-style entries, coffee stains, and copier artifacts.
+
+## About Zenon Network
+
+Zenon Network is a Layer-1 decentralized ledger technology (DLT) called the Network of Momentum (NoM). Key characteristics:
+
+- **Architecture**: Dual-ledger system — meta-DAG for consensus/ordering + block-lattice for transactional execution
+- **Consensus**: Leaderless BFT with virtual voting, stake-weighted, non-probabilistic finality
+- **Tokens**: Dual-coin economy — ZNN (governance/staking) and QSR (utility, burned for Pillar registration)
+- **Transactions**: Feeless via Plasma mechanism (fused QSR generates throughput)
+- **Bitcoin Integration**: Trustless native SPV verification at protocol level, FROST threshold signatures, Portal spec v2.0
+- **Governance**: Community-governed DAO with Pillar-weighted voting, Accelerator-Z on-chain treasury
+- **Launch**: Fair launch, no VC backing, no premine, anonymous founding team
+- **Node Types**: Pillars (validators, 15K ZNN stake), Sentinels (full nodes), Sentries (lightweight)
+- **zApps**: Proof-native decentralized applications running in sandboxed unikernel environments
+
+## Network Statistics
+
+- ZNN Circulating Supply: ~10.2M (Max: 90M)
+- QSR Circulating Supply: ~29.4M (Max: ~79M)
+- Daily ZNN Emission: 4,320
+- Daily QSR Emission: 5,000
+- Active Pillars (Validators): ~90+
+- Sentinels (Full Nodes): ~60+
+
+## Links
+
+- Website: https://zenon.network
+- Community Hub: https://zenon.wtf
+- Source Code: https://github.com/0x3639/nom-IC-memo
+
+## Technical Stack
+
+- React + Vite + Tailwind CSS v4
+- Hosted on GitHub Pages
+- Fonts: Courier Prime (typewriter), Special Elite (handwritten), Gloria Hallelujah (notes)
