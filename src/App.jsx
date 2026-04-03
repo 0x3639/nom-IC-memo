@@ -290,7 +290,7 @@ function App() {
         <SectionDivider />
         <SectionLabel>MANAGEMENT:</SectionLabel>
         <div className="font-handwritten text-[17px] text-pen px-3 leading-[1.7]">
-          Anonymous Core Team — "Deliver first, talk later"
+          Anonymous Core Team — "<a href="https://www.youtube.com/watch?v=fHYWsJxAgEw" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Deliver first, talk later</a>"
           <br />
           Community-Governed DAO (Pillar Voting)
           <br />
