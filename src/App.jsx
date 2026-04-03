@@ -194,7 +194,7 @@ function App() {
         <div className="flex flex-nowrap items-baseline mb-0.5">
           <div className="flex items-baseline" style={{ width: '62%' }}>
             <Label>Company</Label>
-            <ValueInline>Zenon Network (NoM)</ValueInline>
+            <ValueInline><a href="https://zenon.network" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Zenon Network (NoM)</a></ValueInline>
           </div>
           <div className="flex items-baseline flex-1">
             <Label>Date Rec'd</Label>
@@ -210,7 +210,7 @@ function App() {
           </div>
           <div className="flex items-baseline flex-1">
             <Label>Telephone</Label>
-            <ValueInline>@zenonnetwork</ValueInline>
+            <ValueInline><a href="https://t.me/zenonnetwork" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@zenonnetwork</a></ValueInline>
           </div>
         </div>
 
@@ -232,7 +232,7 @@ function App() {
         <SectionValue>
           Layer-1 Network of Momentum — Feeless Dual-Ledger DLT
           <br />
-          Bitcoin Interoperability / zApps / Decentralized Infrastructure
+          <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a> Interoperability / zApps / Decentralized Infrastructure
         </SectionValue>
 
         {/* PROPOSED FINANCING */}
@@ -305,26 +305,34 @@ function App() {
         <SectionLabel>COMMENTS:</SectionLabel>
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75]">
           Novel L1 in an emerging category... ~$5M mcap buys entire network — very
-          asymmetric deal. Management structure mirrors early Bitcoin: anonymous
-          founders, no VC backing, fair launch with no premine. Dual-ledger
+          asymmetric deal. Management structure mirrors early <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>: anonymous
+          founders, no VC backing, fair launch with no premine. <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/data-structures" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Dual-ledger
           architecture is genuinely novel: meta-DAG handles consensus/ordering,
-          block-lattice handles transactional execution — each scales independently.
-          Non-probabilistic finality (vs. Bitcoin's probabilistic confirmation).
-          Virtual voting consensus — stake-weighted votes inferred from DAG topology,
-          not explicit messages. Leaderless BFT design, no single point of failure.
+          block-lattice handles transactional execution — each scales independently.</a>
+          {' '}<a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Non-probabilistic finality</a> (vs. <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>'s probabilistic confirmation).
+          <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/pillars" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Virtual voting consensus — stake-weighted votes inferred from DAG topology,
+          not explicit messages.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/supervisor-layer" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Leaderless BFT design, no single point of failure.</a>
         </div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
-          Bitcoin interop is trustless — native SPV verification at protocol level,
-          no bridge validators or custodians. FROST threshold signatures, Portal
-          spec v2.0 + eBTC roadmap. zApps framework runs proof-native applications
-          in sandboxed unikernel environments. "Verification-first" architecture
-          inverts traditional blockchain design — light clients viable on mobile.
+          <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/interoperability" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer"><span className="text-inherit">Bitcoin</span> interop is trustless — native SPV verification at protocol level,
+          no bridge validators or custodians.</a> <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Zenon%20Portal/Portal%20V2/zenon_portal_final.md" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">FROST threshold signatures, Portal
+          spec v2.0 + eBTC roadmap.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/execution-model/zapps-draft-notes" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">zApps framework runs proof-native applications
+          in sandboxed unikernel environments.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/light-clients-verification/browser-light-client-architecture" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">"Verification-first" architecture
+          inverts traditional blockchain design — light clients viable on mobile.</a>
+        </div>
+
+        <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
+          <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Interstellar-OS-stack-example" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Interstellar OS</a> — a verification kernel enforcing strict separation between
+          ordering (consensus) and interpretation (local state derivation). Multiple
+          independent runtimes (markets, bridges, reputation) interpret the same
+          canonical claim stream without touching consensus. Verification cost bounded
+          by proof size, not execution complexity. See <a href="https://substack.com/home/post/p-190282156" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
         </div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           Proposed allocation: Direct market purchase. Invitees: N/A — open market.
-          Uniswap V2 (ETH pair) is primary DEX venue; thin liquidity.
+          <a href="https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0xb2e96a63479c2edd2fd62b382c89d5ca79f572d3" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Uniswap V2 (ETH pair)</a> is primary DEX venue; thin liquidity.
         </div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1.5 underline decoration-pen underline-offset-[3px]">
@@ -351,7 +359,7 @@ function App() {
 
         {/* Handwritten note */}
         <div className="text-[14px] text-pen opacity-65 -rotate-[1.5deg] mt-3 pl-2" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>
-          * "The Network of Momentum is an evolutionary step in DLT" — zenon.network
+          * "The Network of Momentum is an evolutionary step in DLT" — <a href="https://zenon.network" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>zenon.network</a>
         </div>
       </div>
     </div>
