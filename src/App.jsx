@@ -88,7 +88,7 @@ function App() {
           transform: 'rotate(0.35deg)',
           // Tired gray-beige paper, lighter center, darker edges
           backgroundColor: '#e8e2d0',
-          backgroundImage: 'radial-gradient(ellipse at 50% 45%, #edead8 0%, #e8e2d0 50%, #ddd6c2 100%)',
+          backgroundImage: 'radial-gradient(ellipse at 50% 45%, #f2f0ee 0%, #eeecea 50%, #e6e4e1 100%)',
         }}
       >
         {/* Copier edge shadow — chunky, uneven vignette, heavy on left + bottom */}
@@ -168,14 +168,12 @@ function App() {
           </g>
         </svg>
 
-        {/* Coffee stain */}
-        <div
-          className="absolute top-[60px] right-[40px] w-20 h-20 rounded-full pointer-events-none"
-          style={{
-            border: '3px solid rgba(140,100,50,0.08)',
-            background:
-              'radial-gradient(ellipse, rgba(160,120,60,0.03) 40%, transparent 70%)',
-          }}
+        {/* Approved stamp */}
+        <img
+          src="/nom-IC-memo/approved-stamp.webp"
+          alt=""
+          className="absolute top-[45px] right-[25px] w-[130px] h-[130px] pointer-events-none rotate-[-12deg]"
+          style={{ opacity: 0.35 }}
         />
 
         {/* Corner note */}
