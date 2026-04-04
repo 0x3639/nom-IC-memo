@@ -230,7 +230,7 @@ function App() {
         <SectionDivider />
         <SectionLabel>BUSINESS:</SectionLabel>
         <SectionValue>
-          Layer-1 Network of Momentum — Feeless Dual-Ledger DLT
+          Layer 1 Blockchain  — Feeless Dual Ledger DLT
           <br />
           <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a> Interoperability / zApps / Decentralized Infrastructure
         </SectionValue>
@@ -239,10 +239,10 @@ function App() {
         <SectionDivider />
         <SectionLabel>PROPOSED FINANCING:</SectionLabel>
         <SectionValue>
-          N/A — Protocol-Level Treasury (Accelerator-Z)
+          N/A — Protocol Level Treasury (Accelerator-Z)
           <br />
           <span className="text-[17px]">
-            Community-funded via on-chain embedded contract. No VC raise.
+            Community funded via on-chain embedded contract. No VC raise.
           </span>
         </SectionValue>
 
@@ -283,7 +283,7 @@ function App() {
             max="—"
             currentColor="text-[#6a2030]"
           />
-          <TableRow label="Current Price" current="~$0.35" max="—" />
+          <TableRow label="Current Price" current={<a href="https://www.coingecko.com/en/coins/zenon" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">~$0.35</a>} max="—" />
         </div>
 
         {/* MANAGEMENT */}
@@ -292,27 +292,32 @@ function App() {
         <div className="font-handwritten text-[17px] text-pen px-3 leading-[1.7]">
           Anonymous Core Team — "<a href="https://www.youtube.com/watch?v=fHYWsJxAgEw" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Deliver first, talk later</a>"
           <br />
-          Community-Governed DAO (Pillar Voting)
+          Community Governed (Pillar Voting)
           <br />
           Accelerator-Z Treasury — On-Chain Funding
+          <br />
+          Community — Neurodivergent, Autistic, Retarded{' '}
+          <span className="inline-block rotate-[-2.5deg] translate-y-[1px] ml-1" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>(They are nutz)</span>
         </div>
         <div className="font-handwritten text-[16px] text-pen px-3 py-0.5">
-          100% Community-Driven
+          100% Community Driven
         </div>
 
         {/* COMMENTS */}
         <SectionDivider />
         <SectionLabel>COMMENTS:</SectionLabel>
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75]">
-          Novel L1 in an emerging category... ~$5M mcap buys entire network — very
-          asymmetric deal. Management structure mirrors early <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>: anonymous
-          founders, no VC backing, fair launch with no premine. <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/data-structures" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Dual-ledger
-          architecture is genuinely novel: meta-DAG handles consensus/ordering,
-          block-lattice handles transactional execution — each scales independently.</a>
-          {' '}<a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Non-probabilistic finality</a> (vs. <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>'s probabilistic confirmation).
-          <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/pillars" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Virtual voting consensus — stake-weighted votes inferred from DAG topology,
-          not explicit messages.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/supervisor-layer" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Leaderless BFT design, no single point of failure.</a>
+          Novel L1 in an emerging category... ~$5M mcap buys entire network — very asymmetric deal.
         </div>
+        <ul className="font-handwritten text-[16px] text-pen px-2 pl-7 leading-[1.75] list-disc marker:text-pen">
+          <li>Management structure mirrors early <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>: anonymous founders, no VC backing, fair launch with no premine.</li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/data-structures" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Dual-ledger architecture is genuinely novel: meta-DAG handles consensus/ordering, block-lattice handles transactional execution — each scales independently.</a></li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Non-probabilistic finality</a> (vs. <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>'s probabilistic confirmation).</li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/pillars" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Virtual voting consensus — stake-weighted votes inferred from DAG topology, not explicit messages.</a></li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/supervisor-layer" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Leaderless BFT design, no single point of failure.</a></li>
+        </ul>
+
+        <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/interoperability" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer"><span className="text-inherit">Bitcoin</span> interop is trustless — native SPV verification at protocol level,
@@ -322,6 +327,8 @@ function App() {
           inverts traditional blockchain design — light clients viable on mobile.</a>
         </div>
 
+        <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
+
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Interstellar-OS-stack-example" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Interstellar OS</a> — a verification kernel enforcing strict separation between
           ordering (consensus) and interpretation (local state derivation). Multiple
@@ -330,10 +337,14 @@ function App() {
           by proof size, not execution complexity. See <a href="https://substack.com/home/post/p-190282156" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
         </div>
 
+        <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
+
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           Proposed allocation: Direct market purchase. Invitees: N/A — open market.
           <a href="https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0xb2e96a63479c2edd2fd62b382c89d5ca79f572d3" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Uniswap V2 (ETH pair)</a> is primary DEX venue; thin liquidity.
         </div>
+
+        <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1.5 underline decoration-pen underline-offset-[3px]">
           Will be tough to accumulate this position: extremely small float, thin
