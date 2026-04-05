@@ -10,7 +10,7 @@ const paperStyle = {
 
 function App() {
   return (
-    <main className="bg-desk flex justify-center px-2 py-4 md:px-5 md:py-10 min-h-screen overflow-x-hidden">
+    <main className="bg-desk flex justify-center px-4 py-4 md:px-5 md:py-10 min-h-screen overflow-x-hidden">
       <div
         className="w-full max-w-[840px] min-h-0 md:min-h-[1152px] relative px-4 py-6 sm:px-8 sm:py-10 md:px-16 md:py-14 overflow-hidden"
         style={paperStyle}
@@ -64,7 +64,7 @@ function App() {
         <div className="flex flex-wrap md:flex-nowrap items-baseline mb-0.5 min-h-[22px] gap-y-0.5">
           <div className="flex items-baseline w-full md:w-[62%]">
             <Label>Introduced By</Label>
-            <Value nowrap>Anonymous: Community Research</Value>
+            <Value nowrap><span className="hidden md:inline">Anonymous: Community Research</span><span className="md:hidden">Anon: Community Research</span></Value>
           </div>
           <div className="flex items-baseline w-full md:flex-1 md:w-auto">
             <Label>Telephone</Label>
