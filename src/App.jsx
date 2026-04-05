@@ -64,7 +64,7 @@ function App() {
         <div className="flex flex-wrap md:flex-nowrap items-baseline mb-0.5 min-h-[22px] gap-y-0.5">
           <div className="flex items-baseline w-full md:w-[62%]">
             <Label>Introduced By</Label>
-            <Value nowrap><span className="hidden md:inline">Anonymous: Community Research</span><span className="md:hidden">Anon: Community Research</span></Value>
+            <Value nowrap><span className="hidden md:inline">Anonymous: Community Research</span><span className="md:hidden">Community Research</span></Value>
           </div>
           <div className="flex items-baseline w-full md:flex-1 md:w-auto">
             <Label>Telephone</Label>
