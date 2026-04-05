@@ -1,8 +1,8 @@
-# Zenon Network — CMS Evaluation Form
+# Zenon Network — IC Evaluation Form
 
-A React + Tailwind CSS site that recreates a vintage 1970s-style "CMS Evaluation Form" — modeled after the famous 1977 Apple Computer evaluation document — themed for the [Zenon Network](https://zenon.network) (Network of Momentum) cryptocurrency project.
+A React + Tailwind CSS site that recreates a vintage 1970s-style "IC Evaluation Form" — modeled after the famous 1977 Apple Computer evaluation document — themed for the [Zenon Network](https://zenon.network) (Network of Momentum) cryptocurrency project.
 
-**Live site:** [www.0x3639.com/nom-IC-memo/](https://www.0x3639.com/nom-IC-memo/)
+**Live site:** [deeznnutz.com](https://deeznnutz.com/)
 
 ![Screenshot](Screenshot%202026-04-02%20at%206.04.30%20AM.png)
 

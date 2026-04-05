@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A React + Tailwind CSS site that recreates a vintage 1970s-style "CMS Evaluation Form" — modeled after the famous 1977 Apple Computer evaluation document (screenshot included as reference) — themed for the Zenon Network (NoM) cryptocurrency project.
+A React + Tailwind CSS site that recreates a vintage 1970s-style "IC Evaluation Form" — modeled after the famous 1977 Apple Computer evaluation document (screenshot included as reference) — themed for the Zenon Network (NoM) cryptocurrency project.
 
 ## Commands
 

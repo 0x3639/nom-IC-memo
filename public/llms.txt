@@ -1,6 +1,6 @@
-# Zenon Network — CMS Evaluation Form
+# Zenon Network — IC Evaluation Form
 
-> A vintage 1970s-style "CMS Evaluation Form" for the Zenon Network of Momentum (NoM), modeled after the famous 1977 Apple Computer evaluation document.
+> A vintage 1970s-style "IC Evaluation Form" for the Zenon Network of Momentum (NoM), modeled after the famous 1977 Apple Computer evaluation document.
 
 ## About This Site
 
@@ -33,7 +33,7 @@ Zenon Network is a Layer-1 decentralized ledger technology (DLT) called the Netw
 
 - Website: https://zenon.network
 - Community Hub: https://zenon.wtf
-- Source Code: https://github.com/0x3639/nom-IC-memo
+- Source Code: https://github.com/0x3639/zenon-eval-form
 
 ## Technical Stack
 

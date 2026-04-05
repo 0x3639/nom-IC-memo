@@ -170,7 +170,7 @@ function App() {
 
         {/* Approved stamp */}
         <img
-          src="/nom-IC-memo/approved-stamp.webp"
+          src="/approved-stamp.webp"
           alt=""
           className="absolute top-[45px] right-[25px] w-[130px] h-[130px] pointer-events-none rotate-[-12deg]"
           style={{ opacity: 0.35 }}
@@ -185,7 +185,7 @@ function App() {
 
         {/* Title */}
         <h1 className="text-center font-typewriter font-bold text-[19px] tracking-[3px] underline underline-offset-4 text-ink mb-5">
-          CMS EVALUATION FORM
+          IC EVALUATION FORM
         </h1>
 
         {/* Row 1: Company / Date */}
