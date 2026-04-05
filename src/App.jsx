@@ -344,6 +344,22 @@ function App() {
 
         <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
+        <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
+          The project is shrouded in puzzles, hidden messages, alt accounts, and
+          mystery. <a href="https://x.com/Zenon_Network" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@Zenon_Network</a> announced
+          the <a href="https://x.com/Zenon_Network/status/1460240120309760010" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Taproot Puzzle</a> on
+          Nov 15, 2021 — a cryptographic riddle embedded inside a Bitcoin Taproot
+          transaction that <a href="https://medium.com/@coinselor/the-real-zenon-enigma-88bcf10500d0" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">community researchers</a> have
+          spent years decoding. More recently, <a href="https://x.com/TminusZ" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@TminusZ</a> began
+          decoding a generator hidden in <a href="https://x.com/weapymon" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@weapymon</a>'s
+          cryptic <a href="https://www.youtube.com/watch?v=nVPMgh1bLT4&list=PLDtIM9grISVOTlO4zTvg3-aAzV3lPa7zb" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">video series</a> posted
+          on X. See <a href="/zenon_ascii_puzzle_handoff.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
+          The culture of puzzles signals deep technical roots and a community that
+          rewards curiosity.
+        </div>
+
+        <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
+
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1.5 underline decoration-pen underline-offset-[3px]">
           Will be tough to accumulate this position: extremely small float, thin
           liquidity, no CEX listings of note. Community is tight — holders do not
