@@ -295,7 +295,7 @@ function App() {
           Accelerator-Z Treasury — On-Chain Funding
           <br />
           Community — Neurodivergent, Autistic, Retarded{' '}
-          <span className="inline-block rotate-[-2.5deg] translate-y-[1px] ml-1" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>(They are nutz)</span>
+          <span className="inline-block rotate-[-2.5deg] translate-y-[1px] ml-1" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>(<a href="https://zenon.wtf" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">wtf</a> They are nutz)</span>
         </div>
         <div className="font-handwritten text-[16px] text-pen px-3 py-0.5">
           100% Community Driven
@@ -320,7 +320,7 @@ function App() {
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/interoperability" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer"><span className="text-inherit">Bitcoin</span> interop is trustless — native SPV verification at protocol level,
           no bridge validators or custodians.</a> <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Zenon%20Portal/Portal%20V2/zenon_portal_final.md" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">FROST threshold signatures, Portal
-          spec v2.0 + eBTC roadmap.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/execution-model/zapps-draft-notes" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">zApps framework runs proof-native applications
+          spec v2.0</a> + <a href="https://ebtc.wtf/" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">eBTC</a> roadmap. <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/execution-model/zapps-draft-notes" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">zApps framework runs proof-native applications
           in sandboxed unikernel environments.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/light-clients-verification/browser-light-client-architecture" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">"Verification-first" architecture
           inverts traditional blockchain design — light clients viable on mobile.</a>
         </div>
