@@ -1,81 +1,11 @@
-import { useEffect, useRef } from 'react'
+import PaperOverlays from './PaperEffects'
 
-function CopierNoiseCanvas() {
-  const canvasRef = useRef(null)
+const linkClass = 'text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer'
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    const W = 840
-    const H = 1152
-    canvas.width = W
-    canvas.height = H
-    ctx.clearRect(0, 0, W, H)
-
-    // Seed-based pseudo-random for deterministic specks
-    let seed = 42
-    const rand = () => {
-      seed = (seed * 16807 + 0) % 2147483647
-      return seed / 2147483647
-    }
-
-    // Toner speckle — hundreds of random dots, denser near edges
-    for (let i = 0; i < 400; i++) {
-      const x = rand() * W
-      const y = rand() * H
-
-      // Density increases near edges
-      const edgeDist = Math.min(x, W - x, y, H - y) / 80
-      const edgeBoost = Math.max(0, 1 - edgeDist) * 0.3
-      if (rand() > 0.35 + edgeBoost) continue
-
-      const r = rand() * 2.2 + 0.3
-      const alpha = rand() * 0.25 + 0.05 + edgeBoost * 0.15
-      ctx.beginPath()
-      ctx.arc(x, y, r, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(40, 35, 30, ${alpha})`
-      ctx.fill()
-    }
-
-    // Small clusters — groups of 2-4 specks close together
-    for (let i = 0; i < 25; i++) {
-      const cx = rand() * W
-      const cy = rand() * H
-      const count = Math.floor(rand() * 3) + 2
-      for (let j = 0; j < count; j++) {
-        const x = cx + (rand() - 0.5) * 8
-        const y = cy + (rand() - 0.5) * 6
-        const r = rand() * 1.2 + 0.3
-        ctx.beginPath()
-        ctx.arc(x, y, r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(40, 35, 30, ${rand() * 0.2 + 0.08})`
-        ctx.fill()
-      }
-    }
-
-    // Dirty glass marks — soft smudge patches
-    const smudges = [
-      [150, 200, 40, 35], [520, 450, 30, 25], [80, 700, 50, 30],
-      [600, 150, 25, 40], [350, 820, 35, 28],
-    ]
-    for (const [sx, sy, sw, sh] of smudges) {
-      const grad = ctx.createRadialGradient(sx, sy, 0, sx, sy, Math.max(sw, sh))
-      grad.addColorStop(0, 'rgba(60, 50, 40, 0.04)')
-      grad.addColorStop(0.5, 'rgba(60, 50, 40, 0.025)')
-      grad.addColorStop(1, 'rgba(60, 50, 40, 0)')
-      ctx.fillStyle = grad
-      ctx.fillRect(sx - sw, sy - sh, sw * 2, sh * 2)
-    }
-  }, [])
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-none z-10"
-      style={{ width: '100%', height: '100%' }}
-    />
-  )
+const paperStyle = {
+  transform: 'rotate(0.35deg)',
+  backgroundColor: '#e8e2d0',
+  backgroundImage: 'radial-gradient(ellipse at 50% 45%, #f2f0ee 0%, #eeecea 50%, #e6e4e1 100%)',
 }
 
 function App() {
@@ -83,101 +13,19 @@ function App() {
     <main className="bg-desk flex justify-center px-5 py-10 min-h-screen">
       <div
         className="w-[840px] min-h-[1152px] relative px-16 py-14 overflow-hidden"
-        style={{
-          // Slight skew — nobody placed it perfectly straight
-          transform: 'rotate(0.35deg)',
-          // Tired gray-beige paper, lighter center, darker edges
-          backgroundColor: '#e8e2d0',
-          backgroundImage: 'radial-gradient(ellipse at 50% 45%, #f2f0ee 0%, #eeecea 50%, #e6e4e1 100%)',
-        }}
+        style={paperStyle}
       >
-        {/* Copier edge shadow — chunky, uneven vignette, heavy on left + bottom */}
-        <div
-          className="absolute inset-0 pointer-events-none z-20"
-          style={{
-            boxShadow: [
-              'inset 30px 0 40px -15px rgba(30,25,20,0.12)',   // left heavy
-              'inset -15px 0 30px -10px rgba(30,25,20,0.06)',   // right lighter
-              'inset 0 20px 25px -10px rgba(30,25,20,0.05)',    // top subtle
-              'inset 0 -25px 40px -12px rgba(30,25,20,0.10)',   // bottom heavy
-              'inset 8px 8px 60px rgba(30,25,20,0.04)',         // general inner
-            ].join(', '),
-          }}
-        />
-        {/* Extra left-edge hard shadow */}
-        <div
-          className="absolute left-0 top-0 bottom-0 w-[18px] pointer-events-none z-20"
-          style={{
-            background: 'linear-gradient(to right, rgba(30,25,20,0.09) 0%, transparent 100%)',
-          }}
-        />
-        {/* Extra bottom-edge hard shadow */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-[14px] pointer-events-none z-20"
-          style={{
-            background: 'linear-gradient(to top, rgba(30,25,20,0.07) 0%, transparent 100%)',
-          }}
-        />
-
-        {/* Horizontal banding — copier drum artifacts */}
-        <div
-          className="absolute inset-0 pointer-events-none z-10 opacity-[0.035]"
-          style={{
-            backgroundImage: [
-              'repeating-linear-gradient(0deg, transparent 0px, transparent 45px, rgba(30,20,10,1) 45px, rgba(30,20,10,1) 47px, transparent 47px, transparent 110px)',
-              'repeating-linear-gradient(0deg, transparent 20px, transparent 72px, rgba(30,20,10,0.6) 72px, rgba(30,20,10,0.6) 73px, transparent 73px, transparent 155px)',
-            ].join(', '),
-          }}
-        />
-
-        {/* Micro-texture grain — paper fiber / copier noise */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg">
-          <filter id="grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="4" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#grain)" opacity="0.08" />
-        </svg>
-
-        {/* Canvas-based toner speckle + dirty glass marks */}
-        <CopierNoiseCanvas />
-
-        {/* Angled copier streak — misaligned copy artifact */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg">
-          <g opacity="0.15">
-            <circle cx="40" cy="18" r="0.5" fill="#333" />
-            <circle cx="55" cy="17.5" r="0.7" fill="#444" />
-            <circle cx="72" cy="17" r="0.4" fill="#333" />
-            <circle cx="95" cy="16.2" r="0.8" fill="#555" />
-            <circle cx="118" cy="15.8" r="0.5" fill="#333" />
-            <circle cx="145" cy="15" r="0.6" fill="#444" />
-            <circle cx="175" cy="14.5" r="0.4" fill="#333" />
-            <circle cx="210" cy="13.8" r="0.7" fill="#555" />
-            <circle cx="248" cy="13" r="0.5" fill="#333" />
-            <circle cx="280" cy="12.5" r="0.6" fill="#444" />
-            <circle cx="320" cy="11.8" r="0.4" fill="#333" />
-            <circle cx="355" cy="11" r="0.8" fill="#555" />
-            <circle cx="390" cy="10.5" r="0.5" fill="#333" />
-            <circle cx="430" cy="9.8" r="0.6" fill="#444" />
-            <circle cx="465" cy="9.2" r="0.4" fill="#333" />
-            <circle cx="505" cy="8.5" r="0.7" fill="#555" />
-            <circle cx="545" cy="8" r="0.5" fill="#333" />
-            <circle cx="580" cy="7.2" r="0.6" fill="#444" />
-            <circle cx="620" cy="6.5" r="0.4" fill="#333" />
-            <circle cx="660" cy="6" r="0.7" fill="#555" />
-          </g>
-        </svg>
+        <PaperOverlays />
 
         {/* Approved stamp */}
         <img
           src="/approved-stamp.webp"
           alt=""
-          className="absolute top-[45px] right-[25px] w-[130px] h-[130px] pointer-events-none rotate-[-12deg]"
-          style={{ opacity: 0.35 }}
+          className="absolute top-[45px] right-[25px] w-[130px] h-[130px] pointer-events-none rotate-[-12deg] opacity-35"
         />
 
         {/* Corner note */}
-        <div className="absolute top-4 right-[50px] text-pen text-[16px] -rotate-[2deg] opacity-70" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>
+        <div className="absolute top-4 right-[50px] font-cursive text-pen text-[16px] -rotate-[2deg] opacity-70">
           cc: File
           <br />
           4/2/26
@@ -192,11 +40,11 @@ function App() {
         <div className="flex flex-nowrap items-baseline mb-0.5">
           <div className="flex items-baseline" style={{ width: '62%' }}>
             <Label>Company</Label>
-            <ValueInline><a href="https://zenon.network" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Zenon Network (NoM)</a></ValueInline>
+            <Value nowrap><a href="https://zenon.network" target="_blank" rel="noopener noreferrer" className={linkClass}>Zenon Network (NoM)</a></Value>
           </div>
           <div className="flex items-baseline flex-1">
             <Label>Date Rec'd</Label>
-            <ValueInline>4/2/26</ValueInline>
+            <Value nowrap>4/2/26</Value>
           </div>
         </div>
 
@@ -204,11 +52,11 @@ function App() {
         <div className="flex flex-nowrap items-baseline mb-0.5">
           <div className="flex items-baseline" style={{ width: '62%' }}>
             <Label>Address</Label>
-            <ValueInline>Decentralized — No Fixed HQ</ValueInline>
+            <Value nowrap>Decentralized — No Fixed HQ</Value>
           </div>
           <div className="flex items-baseline flex-1">
             <Label>Telephone</Label>
-            <ValueInline><a href="https://t.me/zenonnetwork" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@zenonnetwork</a></ValueInline>
+            <Value nowrap><a href="https://t.me/zenonnetwork" target="_blank" rel="noopener noreferrer" className={linkClass}>@zenonnetwork</a></Value>
           </div>
         </div>
 
@@ -216,11 +64,11 @@ function App() {
         <div className="flex flex-nowrap items-baseline mb-0.5 min-h-[22px]">
           <div className="flex items-baseline" style={{ width: '62%' }}>
             <Label>Introduced By</Label>
-            <ValueInline>Anonymous: Community Research</ValueInline>
+            <Value nowrap>Anonymous: Community Research</Value>
           </div>
           <div className="flex items-baseline flex-1">
             <Label>Telephone</Label>
-            <ValueInline>{'\u00A0'}</ValueInline>
+            <Value nowrap>{'\u00A0'}</Value>
           </div>
         </div>
 
@@ -230,7 +78,7 @@ function App() {
         <SectionValue>
           Layer 1 Blockchain  — Feeless Dual Ledger DLT
           <br />
-          <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a> Interoperability / zApps / Decentralized Infrastructure
+          <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className={linkClass}>Bitcoin</a> Interoperability / zApps / Decentralized Infrastructure
         </SectionValue>
 
         {/* PROPOSED FINANCING */}
@@ -281,21 +129,21 @@ function App() {
             max="—"
             currentColor="text-[#6a2030]"
           />
-          <TableRow label="Current Price" current={<a href="https://www.coingecko.com/en/coins/zenon" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">~$0.35</a>} max="—" />
+          <TableRow label="Current Price" current={<a href="https://www.coingecko.com/en/coins/zenon" target="_blank" rel="noopener noreferrer" className={linkClass}>~$0.35</a>} max="—" />
         </div>
 
         {/* MANAGEMENT */}
         <SectionDivider />
         <SectionLabel>MANAGEMENT:</SectionLabel>
         <div className="font-handwritten text-[17px] text-pen px-3 leading-[1.7]">
-          Anonymous Core Team — "<a href="https://www.youtube.com/watch?v=fHYWsJxAgEw" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Deliver first, talk later</a>"
+          Anonymous Core Team — "<a href="https://www.youtube.com/watch?v=fHYWsJxAgEw" target="_blank" rel="noopener noreferrer" className={linkClass}>Deliver first, talk later</a>"
           <br />
           Community Governed (Pillar Voting)
           <br />
           Accelerator-Z Treasury — On-Chain Funding
           <br />
           Community — Neurodivergent, Autistic, Retarded{' '}
-          <span className="inline-block rotate-[-2.5deg] translate-y-[1px] ml-1" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>(<a href="https://zenon.wtf" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">wtf</a> They are nutz)</span>
+          <span className="inline-block rotate-[-2.5deg] translate-y-[1px] ml-1 font-cursive">(<a href="https://zenon.wtf" target="_blank" rel="noopener noreferrer" className={linkClass}>wtf</a> They are nutz)</span>
         </div>
         <div className="font-handwritten text-[16px] text-pen px-3 py-0.5">
           100% Community Driven
@@ -308,52 +156,52 @@ function App() {
           Novel L1 in an emerging category... ~$5M mcap buys entire network — very asymmetric deal.
         </div>
         <ul className="font-handwritten text-[16px] text-pen px-2 pl-7 leading-[1.75] list-disc marker:text-pen">
-          <li>Management structure mirrors early <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>: anonymous founders, no VC backing, fair launch with no premine.</li>
-          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/data-structures" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Dual-ledger architecture is genuinely novel: meta-DAG handles consensus/ordering, block-lattice handles transactional execution — each scales independently.</a></li>
-          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Non-probabilistic finality</a> (vs. <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Bitcoin</a>'s probabilistic confirmation).</li>
-          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/pillars" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Virtual voting consensus — stake-weighted votes inferred from DAG topology, not explicit messages.</a></li>
-          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/supervisor-layer" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Leaderless BFT design, no single point of failure.</a></li>
+          <li>Management structure mirrors early <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className={linkClass}>Bitcoin</a>: anonymous founders, no VC backing, fair launch with no premine.</li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/data-structures" target="_blank" rel="noopener noreferrer" className={linkClass}>Dual-ledger architecture is genuinely novel: meta-DAG handles consensus/ordering, block-lattice handles transactional execution — each scales independently.</a></li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/research/taxonomy-deterministic-fact-acceptance" target="_blank" rel="noopener noreferrer" className={linkClass}>Non-probabilistic finality</a> (vs. <a href="https://bitcoin.org" target="_blank" rel="noopener noreferrer" className={linkClass}>Bitcoin</a>'s probabilistic confirmation).</li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/pillars" target="_blank" rel="noopener noreferrer" className={linkClass}>Virtual voting consensus — stake-weighted votes inferred from DAG topology, not explicit messages.</a></li>
+          <li><a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/node-architecture/supervisor-layer" target="_blank" rel="noopener noreferrer" className={linkClass}>Leaderless BFT design, no single point of failure.</a></li>
         </ul>
 
         <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
-          <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/interoperability" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer"><span className="text-inherit">Bitcoin</span> interop is trustless — native SPV verification at protocol level,
-          no bridge validators or custodians.</a> <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Zenon%20Portal/Portal%20V2/zenon_portal_final.md" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">FROST threshold signatures, Portal
-          spec v2.0</a> + <a href="https://ebtc.wtf/" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">eBTC</a> roadmap. <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/execution-model/zapps-draft-notes" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">zApps framework runs proof-native applications
-          in sandboxed unikernel environments.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/light-clients-verification/browser-light-client-architecture" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">"Verification-first" architecture
+          <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/interoperability" target="_blank" rel="noopener noreferrer" className={linkClass}><span className="text-inherit">Bitcoin</span> interop is trustless — native SPV verification at protocol level,
+          no bridge validators or custodians.</a> <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Zenon%20Portal/Portal%20V2/zenon_portal_final.md" target="_blank" rel="noopener noreferrer" className={linkClass}>FROST threshold signatures, Portal
+          spec v2.0</a> + <a href="https://ebtc.wtf/" target="_blank" rel="noopener noreferrer" className={linkClass}>eBTC</a> roadmap. <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/execution-model/zapps-draft-notes" target="_blank" rel="noopener noreferrer" className={linkClass}>zApps framework runs proof-native applications
+          in sandboxed unikernel environments.</a> <a href="https://zenon-developer-commons.gitbook.io/zenon-developer-commons-docs/notes-draft-research-and-working-documents/light-clients-verification/browser-light-client-architecture" target="_blank" rel="noopener noreferrer" className={linkClass}>"Verification-first" architecture
           inverts traditional blockchain design — light clients viable on mobile.</a>
         </div>
 
         <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
-          <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Interstellar-OS-stack-example" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Interstellar OS</a> — a verification kernel enforcing strict separation between
+          <a href="https://github.com/TminusZ/zenon-developer-commons/blob/main/docs/specs/Interstellar-OS-stack-example" target="_blank" rel="noopener noreferrer" className={linkClass}>Interstellar OS</a> — a verification kernel enforcing strict separation between
           ordering (consensus) and interpretation (local state derivation). Multiple
           independent runtimes (markets, bridges, reputation) interpret the same
           canonical claim stream without touching consensus. Verification cost bounded
-          by proof size, not execution complexity. See <a href="https://substack.com/home/post/p-190282156" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
+          by proof size, not execution complexity. See <a href="https://substack.com/home/post/p-190282156" target="_blank" rel="noopener noreferrer" className={linkClass}>analysis</a>.
         </div>
 
         <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           Proposed allocation: Direct market purchase. Invitees: N/A — open market.
-          <a href="https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0xb2e96a63479c2edd2fd62b382c89d5ca79f572d3" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Uniswap V2 (ETH pair)</a> is primary DEX venue; thin liquidity.
+          <a href="https://app.uniswap.org/swap?inputCurrency=ETH&outputCurrency=0xb2e96a63479c2edd2fd62b382c89d5ca79f572d3" target="_blank" rel="noopener noreferrer" className={linkClass}>Uniswap V2 (ETH pair)</a> is primary DEX venue; thin liquidity.
         </div>
 
         <div className="font-handwritten text-[18px] text-pen px-2 text-center tracking-widest my-1">— — —</div>
 
         <div className="font-handwritten text-[16px] text-pen px-2 leading-[1.75] mt-1">
           The project is shrouded in puzzles, hidden messages, alt accounts, and
-          mystery. <a href="https://x.com/Zenon_Network" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@Zenon_Network</a> announced
-          the <a href="https://x.com/Zenon_Network/status/1460240120309760010" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Taproot Puzzle</a> on
+          mystery. <a href="https://x.com/Zenon_Network" target="_blank" rel="noopener noreferrer" className={linkClass}>@Zenon_Network</a> announced
+          the <a href="https://x.com/Zenon_Network/status/1460240120309760010" target="_blank" rel="noopener noreferrer" className={linkClass}>Taproot Puzzle</a> on
           Nov 15, 2021 — a cryptographic riddle embedded inside a Bitcoin Taproot
-          transaction that <a href="https://medium.com/@coinselor/the-real-zenon-enigma-88bcf10500d0" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">community researchers</a> have
-          spent years decoding. More recently, <a href="https://x.com/NoMdevelopment" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">TminusZ</a> began
-          decoding a generator hidden in <a href="https://x.com/weapymon" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@weapymon</a>'s
-          cryptic <a href="https://www.youtube.com/watch?v=nVPMgh1bLT4&list=PLDtIM9grISVOTlO4zTvg3-aAzV3lPa7zb" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">video series</a> posted
-          on X. See <a href="/zenon_ascii_puzzle_handoff.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
+          transaction that <a href="https://medium.com/@coinselor/the-real-zenon-enigma-88bcf10500d0" target="_blank" rel="noopener noreferrer" className={linkClass}>community researchers</a> have
+          spent years decoding. More recently, <a href="https://x.com/NoMdevelopment" target="_blank" rel="noopener noreferrer" className={linkClass}>TminusZ</a> began
+          decoding a generator hidden in <a href="https://x.com/weapymon" target="_blank" rel="noopener noreferrer" className={linkClass}>@weapymon</a>'s
+          cryptic <a href="https://www.youtube.com/watch?v=nVPMgh1bLT4&list=PLDtIM9grISVOTlO4zTvg3-aAzV3lPa7zb" target="_blank" rel="noopener noreferrer" className={linkClass}>video series</a> posted
+          on X. See <a href="/zenon_ascii_puzzle_handoff.pdf" target="_blank" rel="noopener noreferrer" className={linkClass}>analysis</a>.
           The culture of puzzles signals deep technical roots and a community that
           rewards curiosity.
         </div>
@@ -372,19 +220,19 @@ function App() {
         {/* Bottom row — line 1: Recommendation / Action Taken */}
         <div className="flex flex-nowrap items-baseline mt-3.5 mb-0.5">
           <Label>Recommendation</Label>
-          <ValueInline>{'\u00A0'}</ValueInline>
+          <Value nowrap>{'\u00A0'}</Value>
           <Label>Action Taken</Label>
-          <ValueInline>{'\u00A0'}</ValueInline>
+          <Value nowrap>{'\u00A0'}</Value>
         </div>
         {/* Bottom row — line 2: Conclusion / M. Priority */}
         <div className="flex flex-nowrap items-baseline mb-0.5">
           <Label>Conclusion</Label>
-          <ValueInline>M. Priority</ValueInline>
+          <Value nowrap>M. Priority</Value>
         </div>
 
         {/* Handwritten note */}
-        <div className="text-[14px] text-pen opacity-65 -rotate-[1.5deg] mt-3 pl-2" style={{ fontFamily: "'Gloria Hallelujah', cursive" }}>
-          * "The Network of Momentum is an evolutionary step in DLT" — <a href="https://zenon.network" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>zenon.network</a>
+        <div className="font-cursive text-[14px] text-pen opacity-65 -rotate-[1.5deg] mt-3 pl-2">
+          * "The Network of Momentum is an evolutionary step in DLT" — <a href="https://zenon.network" target="_blank" rel="noopener noreferrer" className={linkClass}>zenon.network</a>
         </div>
       </div>
     </main>
@@ -393,28 +241,16 @@ function App() {
 
 function Label({ children, className = '' }) {
   return (
-    <span
-      className={`font-typewriter text-[14px] text-ink whitespace-nowrap shrink-0 ${className}`}
-    >
+    <span className={`font-typewriter text-[14px] text-ink whitespace-nowrap shrink-0 ${className}`}>
       {children}
     </span>
   )
 }
 
-function Value({ children, className = '' }) {
+function Value({ children, className = '', nowrap = false }) {
   return (
     <span
-      className={`font-handwritten text-[17px] text-pen ml-1.5 border-b border-[#999] flex-1 pb-px min-h-[22px] ${className}`}
-    >
-      {children}
-    </span>
-  )
-}
-
-function ValueInline({ children }) {
-  return (
-    <span
-      className="font-handwritten text-[17px] text-pen ml-1.5 mr-3 border-b border-[#999] flex-1 pb-px min-h-[22px] whitespace-nowrap"
+      className={`font-handwritten text-[17px] text-pen ml-1.5 border-b border-[#999] flex-1 pb-px min-h-[22px] ${nowrap ? 'whitespace-nowrap mr-3' : ''} ${className}`}
     >
       {children}
     </span>
