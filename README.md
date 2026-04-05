@@ -4,7 +4,7 @@ A React + Tailwind CSS site that recreates a vintage 1970s-style "IC Evaluation 
 
 **Live site:** [deeznnutz.com](https://deeznnutz.com/)
 
-![Screenshot](Screenshot%202026-04-02%20at%206.04.30%20AM.png)
+![Screenshot](reference/screenshot.png)
 
 ## About
 
