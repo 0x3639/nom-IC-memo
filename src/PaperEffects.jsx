@@ -109,10 +109,10 @@ export default function PaperOverlays() {
       <div className="absolute inset-0 pointer-events-none z-20" style={vignetteStyle} />
 
       {/* Extra left-edge hard shadow */}
-      <div className="absolute left-0 top-0 bottom-0 w-[18px] pointer-events-none z-20" style={leftEdgeStyle} />
+      <div className="absolute left-0 top-0 bottom-0 w-[10px] md:w-[18px] pointer-events-none z-20" style={leftEdgeStyle} />
 
       {/* Extra bottom-edge hard shadow */}
-      <div className="absolute bottom-0 left-0 right-0 h-[14px] pointer-events-none z-20" style={bottomEdgeStyle} />
+      <div className="absolute bottom-0 left-0 right-0 h-[8px] md:h-[14px] pointer-events-none z-20" style={bottomEdgeStyle} />
 
       {/* Horizontal banding — copier drum artifacts */}
       <div className="absolute inset-0 pointer-events-none z-10 opacity-[0.035]" style={bandingStyle} />
