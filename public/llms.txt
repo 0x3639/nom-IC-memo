@@ -33,10 +33,10 @@ Zenon Network is a Layer-1 decentralized ledger technology (DLT) called the Netw
 
 - Website: https://zenon.network
 - Community Hub: https://zenon.wtf
-- Source Code: https://github.com/0x3639/zenon-eval-form
+- Source Code: https://github.com/0x3639/nom-IC-memo
 
 ## Technical Stack
 
 - React + Vite + Tailwind CSS v4
-- Hosted on GitHub Pages
+- Hosted on Cloudflare Workers
 - Fonts: Courier Prime (typewriter), Special Elite (handwritten), Gloria Hallelujah (notes)
