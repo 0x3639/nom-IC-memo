@@ -350,7 +350,7 @@ function App() {
           the <a href="https://x.com/Zenon_Network/status/1460240120309760010" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">Taproot Puzzle</a> on
           Nov 15, 2021 — a cryptographic riddle embedded inside a Bitcoin Taproot
           transaction that <a href="https://medium.com/@coinselor/the-real-zenon-enigma-88bcf10500d0" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">community researchers</a> have
-          spent years decoding. More recently, <a href="https://x.com/TminusZ" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@TminusZ</a> began
+          spent years decoding. More recently, <a href="https://x.com/NoMdevelopment" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">TminusZ</a> began
           decoding a generator hidden in <a href="https://x.com/weapymon" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">@weapymon</a>'s
           cryptic <a href="https://www.youtube.com/watch?v=nVPMgh1bLT4&list=PLDtIM9grISVOTlO4zTvg3-aAzV3lPa7zb" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">video series</a> posted
           on X. See <a href="/zenon_ascii_puzzle_handoff.pdf" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:text-inherit hover:no-underline cursor-pointer">analysis</a>.
