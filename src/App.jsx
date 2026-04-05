@@ -10,7 +10,7 @@ const paperStyle = {
 
 function App() {
   return (
-    <main className="bg-desk flex justify-center px-2 py-4 md:px-5 md:py-10 min-h-screen">
+    <main className="bg-desk flex justify-center px-2 py-4 md:px-5 md:py-10 min-h-screen overflow-x-hidden">
       <div
         className="w-full max-w-[840px] min-h-0 md:min-h-[1152px] relative px-4 py-6 sm:px-8 sm:py-10 md:px-16 md:py-14 overflow-hidden"
         style={paperStyle}
