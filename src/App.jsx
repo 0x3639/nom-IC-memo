@@ -80,7 +80,7 @@ function CopierNoiseCanvas() {
 
 function App() {
   return (
-    <div className="bg-desk flex justify-center px-5 py-10 min-h-screen">
+    <main className="bg-desk flex justify-center px-5 py-10 min-h-screen">
       <div
         className="w-[840px] min-h-[1152px] relative px-16 py-14 overflow-hidden"
         style={{
@@ -387,7 +387,7 @@ function App() {
           * "The Network of Momentum is an evolutionary step in DLT" — <a href="https://zenon.network" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>zenon.network</a>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 
